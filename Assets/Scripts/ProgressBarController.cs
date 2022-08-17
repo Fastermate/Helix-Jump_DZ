@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ProgressBarController : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private Image image;
+    public Image image;
 
     [Header("Properties")]
     public Player Player;
@@ -18,7 +18,6 @@ public class ProgressBarController : MonoBehaviour
 
     private void Start()
     {
-        
         maxValue = LevelGenerator.MaxPlatforms * Points;
     }
 
@@ -41,14 +40,10 @@ public class ProgressBarController : MonoBehaviour
     {
         if (!isCorrectlyConfigured) return;
         image.fillAmount = (float)Player.playerScore / (float)maxValue;
+        scoreText.text = "Score: " + Player.playerScore.ToString();
     }
-
 
     public void SetValue(int value) => this.value = value;
     public void SetMaxValue(int maxValue) => this.maxValue = maxValue;
 
-    private void Update()
-    {
-        scoreText.text = "Score: " + Player.playerScore.ToString();
-    }
 }
